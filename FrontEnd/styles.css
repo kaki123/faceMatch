@@ -1,0 +1,50 @@
+/*IT WORKED!*/
+
+.center1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.center2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+
+h3 {
+    color: #2B547E;
+    text-align: center;
+    border: 2px solid #2B547E;
+    margin: 5px;
+    padding: 5px;
+    width: 100px
+}
+
+.wrapper {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#doneB {
+    float: right;
+}
+
+#downloadB {
+    float: left;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
