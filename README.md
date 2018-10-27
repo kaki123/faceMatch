@@ -3,6 +3,8 @@
 # # faceMatch
 # Task to be done in frontend :
   1) Create category selection menu 
+  2) Give the import photo button functionality on the home page
+  3) Give the download button functionality on the results page
 
 # Task to be done in backend :
   1) save the trained model and export to a Pickle File
