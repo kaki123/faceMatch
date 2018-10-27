@@ -1,7 +1,7 @@
 # faceMatch
 # Phase 2
 # # faceMatch
-# Task to be done in front :
+# Task to be done in frontend :
   1) Create category selection menu 
 
 # Task to be done in backend :
