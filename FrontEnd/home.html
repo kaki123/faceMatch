@@ -3,11 +3,13 @@
   <head>
     <title>Face Match</title>
     <link rel="stylesheet" href="./home.css">
+    <script type="text/javascript" src="./home.js"></script>
   </head>
   <body>
 
     <h1>Face Match</h1>
-    <div>
+
+    <div id="photoButtonsDiv">
       <button id="take" type="button">
         <h3>Take<br />Photo</h3>
         <img src="./camera.png" class="icon" alt="Take photo" />
@@ -16,6 +18,30 @@
       <button id="import" type="button">
         <h3>Import<br />Photo</h3>
         <img src="./upload.png" class="icon" alt="Import photo" />
+      </button>
+    </div>
+
+
+
+
+
+
+    <span class="dropdown">
+        <select>
+            <option>Professors</option>
+            <option>Dog Breeds</option>  
+        </select>
+    </span>
+
+
+
+
+
+    <h4>No photo uploaded</h4>
+
+    <div id="doneButtonDiv">
+      <button id="done" type="button">
+        <h3>Done</h3>
       </button>
     </div>
 

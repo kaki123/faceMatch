@@ -1,25 +1,23 @@
+/* Entire page */
 * {
   font-family: Arial;
 }
-
 body {
   background-color: powderblue;  
 }
 
+/* Header */
 h1 {
   color: black;
   text-align: center;
   width: 100%;
-  margin: 50px auto;]
+  /* top horizontal bottom*/
+  margin: 40px auto 0;
 }
 
-div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
+/* All buttons */
 h3 {
+  color: black;
   font-size: 20px;
   top: 0px;
   display: inline-block;
@@ -27,10 +25,6 @@ h3 {
 }
 button {
   position: absolute;
-  width: 200px;
-  height: 250px;
-  top: 0;
-  bottom: 200px;
 
   border: 0;
   border-radius: 10px;
@@ -44,23 +38,142 @@ button {
                                       rgba(0, 0, 0, 0));
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
               inset -2px -2px 3px rgba(0, 0, 0, .6);
-  padding: 50px;
+  
   display: inline-block;
   
 }
 
+/* Two photo buttons */
+#photoButtonsDiv {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+}
+#take, #import {
+  width: 200px;
+  height: 250px;
+  top: 0;
+  bottom: 0;
+  padding: 50px;
+}
 #take {
-  margin: auto 5% auto 20%;
-  left: 0;
+  /* top right bottom left */
+  margin: auto 5% auto 30%;
+  right: 50%;
 }
 #import {
-  margin: auto 20% auto 5%;
-  right: 0;
+  margin: auto 30% auto 5%;
+  left: 50%;
 }
-
 .icon {
   width: 50px;
   height: auto;
 }
+
+
+
+
+
+
+
+
+/* Dropdown category */
+.square {
+  width: .7em;
+  height: .7em;
+  margin: .5em;
+  display: inline-block;
+}
+
+/* Custom dropdown */
+.dropdown {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 350px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; /* demo only */
+}
+
+.dropdown select {
+  background-color: darkseagreen;
+  color: black;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em; 
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.dropdown::before,
+.dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.dropdown::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+
+
+
+
+
+
+
+
+/* No photo error */
+h4 {
+  color: red;
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  bottom: 130px;
+  margin: auto;
+  text-align: center;
+  line-height: 100px;
+}
+
+/* Done button */
+#doneButtonDiv {
+  position: absolute;
+  width: 100%;
+  height: 110px;
+  bottom: 20px;
+}
+#done {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: auto;
+  margin: auto;
+}
+
 
   
