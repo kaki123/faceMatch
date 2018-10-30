@@ -1,5 +1,5 @@
 body {
-  background-color: powderblue;
+  background-color: rgb(186, 216, 246);
 }
 h1 {
   color: black;
@@ -28,9 +28,9 @@ h1 {
   font-size: 1rem;
   text-align: center;
   color: black;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 1px lightcyan;
   border-radius: 10px;
-  background-color: darkseagreen;
+  background-color: lightsteelblue;
   background-image: linear-gradient(to top left,
                                       rgba(0, 0, 0, .2),
                                       rgba(0, 0, 0, .2)30%,
