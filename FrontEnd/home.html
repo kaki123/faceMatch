@@ -9,54 +9,62 @@
 
     <h1>Face Match</h1>
 
+    <!--Photo Buttons-->
     <div id="photoButtonsDiv">
-      <button id="take" type="button">
-        <h3>Take<br />Photo</h3>
+
+      <!--Take photo button
+      <div class="button" id="takeButton">
+        <form action="#">
+          <div class="input-file-container">  
+            <input class="input-file" id="takeFile" type="file" accept="image/*" capture>
+            <label tabindex="0" for="takeFile" class="input-file-trigger">
+              Take</br>Photo
+            </label>
+          </div>
+          <p class="file-return"></p>
+        </form>
         <img src="./camera.png" class="icon" alt="Take photo" />
-      </button>
-      
+      </div>-->
 
-      <form action="#">
-        <div class="input-file-container">  
-          <input class="input-file" id="my-file" type="file">
-          <h3 for="my-file" class="input-file-trigger">
-            Import<br />Photo
-          </h3>
-        </div>
-        <p class="file-return"></p>
-      </form>
-
-
-      <!--<button id="import" type="button">
-        <h3>Import<br />Photo</h3>
+      <!--Import photo button-->
+      <div class="button" id="importButton">
+        <form action="#">
+          <div class="input-file-container">  
+            <input class="input-file" id="importFile" type="file" accept="image/*">
+            <label tabindex="0" for="importFile" class="input-file-trigger">
+              Import</br>Photo
+            </label>
+          </div>
+          <p class="file-return"></p>
+        </form>
         <img src="./upload.png" class="icon" alt="Import photo" />
-      </button>-->
+      </div>
+
+      <!--Right Half-->
+      <div id="right">
+        <!--Category Dropdown-->
+        <div id="dropdown">
+          <span class="dropdown">
+              <select>
+                  <option>Professors</option>
+                  <option>Dog Breeds</option>  
+              </select>
+          </span>
+        </div>
+
+        <!--Photo Status-->
+        <h4>No photo uploaded</h4>
+
+        <!--Done Button-->
+        <button class="button" id="done" type="button">
+          <h3>Done</h3>
+        </button>
+      </div>
+
+
     </div>
 
-
-
-
-
-
-    <span class="dropdown">
-        <select>
-            <option>Professors</option>
-            <option>Dog Breeds</option>  
-        </select>
-    </span>
-
-
-
-
-
-    <h4>No photo uploaded</h4>
-
-    <div id="doneButtonDiv">
-      <button id="done" type="button">
-        <h3>Done</h3>
-      </button>
-    </div>
-
+    
   </body>
 </html>
 
