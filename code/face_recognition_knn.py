@@ -35,6 +35,7 @@ import math
 from sklearn import neighbors
 import os
 import os.path
+from sklearn.externals import joblib
 import pickle
 from PIL import Image, ImageDraw
 import face_recognition
@@ -86,8 +87,12 @@ def train(train_dir, model_save_path=None, n_neighbors=None, knn_algo='ball_tree
                 if verbose:
                     print("Image {} not suitable for training: {}".format(img_path, "Didn't find a face" if len(face_bounding_boxes) < 1 else "Found more than one face"))
             else:
+                #print(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0].flatten())
+                #print(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0])
                 # Add face encoding for current image to the training set
-                X.append(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0])
+
+                # CHANGED THE TRAINING INSTANCES INTO 1-D LISTS FOR CONVENIENCE OF JSON FILE
+                X.append(face_recognition.face_encodings(image, known_face_locations=face_bounding_boxes)[0].flatten().tolist())
                 y.append(class_dir)
 
     # Determine how many neighbors to use for weighting in the KNN classifier
@@ -132,6 +137,7 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.8):
             knn_clf = pickle.load(f)
 
     # Load image file and find face locations
+    # NEED TO WRITE IN SERVER
     X_img = face_recognition.load_image_file(X_img_path)
     X_face_locations = face_recognition.face_locations(X_img)
 
@@ -187,7 +193,8 @@ if __name__ == "__main__":
     print("Training KNN classifier...")
     classifier = train("knn_examples/train", model_save_path="trained_knn_model.clf", n_neighbors=2)
     print("Training complete!")
-
+    joblib.dump(classifier, 'model.joblib')
+    """
     # STEP 2: Using the trained classifier, make predictions for unknown images
     for image_file in os.listdir("knn_examples/test"):
         full_file_path = os.path.join("knn_examples/test", image_file)
@@ -197,10 +204,13 @@ if __name__ == "__main__":
         # Find all people in the image using a trained classifier model
         # Note: You can pass in either a classifier file name or a classifier model instance
         predictions = predict(full_file_path, model_path="trained_knn_model.clf")
-
+        print(predictions)
+        
         # Print results on the console
         for name, (top, right, bottom, left) in predictions:
             print("- Found {} at ({}, {})".format(name, left, top))
 
         # Display results overlaid on an image
         show_prediction_labels_on_image(os.path.join("knn_examples/test", image_file), predictions)
+        
+    """
