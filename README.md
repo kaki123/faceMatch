@@ -7,7 +7,8 @@ faceMatch
 ├── code (code for training and saving the machine learning model)
 ├── helperScripts (scrips that help with data preprocessing and other purposes)
 ├── savedModels (trained models that are uploaded to GCP)
-|
+├── testInput (JSON file that are used as an input to make online predictions in GCP)
+├── knnExamples (training and test file for the KNN model)
 └── README.md
 ```
 
