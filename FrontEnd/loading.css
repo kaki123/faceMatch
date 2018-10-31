@@ -1,16 +1,28 @@
+* {
+  font-family: Arial;
+}
 body {
-    background-color: powderblue;
-  }
-  h1 {
-    color: black;
-    text-align: left;
-  }
-  
-  .image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-  }
+    background-color: lightcyan;
+}
+h1 {
+  color: black;
+  text-align: center;
+}
+.image {
+  /*display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 25%;
+  width: auto;*/
+
+  position: absolute;
+  width: 300px;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
   
     
