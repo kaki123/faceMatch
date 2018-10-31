@@ -8,13 +8,13 @@
     <body>
 
         <div class="row">
-            <div class="column" style="background-color:rgb(166, 196, 226);">
+            <div class="notMain">
               <a href="export.html" style="text-decoration:none"><h2 align="center">Match</h2></a>
             </div>
-            <div class="column" style="background-color:rgb(186, 216, 246);">
+            <div class="main">
               <h2 align="center">Side-by-side</h2>
             </div>
-            <div class="column" style="background-color:rgb(166, 196, 226)">
+            <div class="notMain">
                 <a href="merge.html" style="text-decoration:none"><h2 align="center">Merge</h2></a>
             </div>
           </div>
@@ -23,19 +23,19 @@
 
         <!--Display lab picture in center of screen-->
         <div class="images">
-            <div class="img">
+            <div class="imgLab">
                 <img src="lab.jpg" alt="Lab" class="center1">
             </div>
-            <div class="img">
+            <div class="imgMan">
                 <img src="man.jpg" alt="Man" class="center1">
             </div>
         </div>
 
         <!--Centered text that says what you matched with-->
-        <center><h1>You look most like a lab!</h1></center>
+        <div class="wrapper">
+            <center><h1>You look most like a lab!</h1></center>
 
         <!--Download and done buttons-->
-        <div class="wrapper">
             <div id="downloadB">
                 <a href="lab.jpg" download="lab.jpg"> 
                 <h3>download</h3>
@@ -43,7 +43,7 @@
             </div>
             <div id="doneB">
                 <a href="home.html"><h3>done</h3></a>
+            </div>
         </div>
-
     </body>
 </html>

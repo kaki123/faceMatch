@@ -1,4 +1,9 @@
-
+body {
+    background-color: lightcyan;
+}
+a {
+    color: black;
+}
 .center1 {
     display: block;
     margin-left: auto;
@@ -14,18 +19,23 @@
 }
 
 h3 {
-    color: #2B547E;
+    color: black;
     text-align: center;
-    border: 2px solid #2B547E;
+    border: 2px solid black;
     margin: 5px;
     padding: 5px;
     width: 100px
 }
 
 .wrapper {
-    width: 600px;
+    width: 50%;
+    height: 200px;
     margin: 0 auto;
     text-align: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
 }
 
 #doneB {
@@ -49,8 +59,25 @@ h3 {
 }
 
 .images {
-    text-align:center;
-    padding: 0px;
+    position: absolute;
+    width: 100%;
+    height: 75%;
+}
+
+.imgLab {
+    top: 0;
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    margin: auto 5% auto 30%;
+}
+
+.imgMan {
+    top: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin: auto 30% auto 5%;
 }
 
 /* Clear floats after the columns */
@@ -58,4 +85,16 @@ h3 {
     content: "";
     display: table;
     clear: both;
+}
+
+.main {
+    background-color: rgb(32, 178, 170);
+    float: left;
+    width: 33.33%;
+}
+
+.notMain {
+    background-color: rgb(58, 207, 200);
+    float: left;
+    width: 33.33%;
 }
