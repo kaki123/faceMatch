@@ -1,0 +1,16 @@
+body {
+    background-color: powderblue;
+  }
+  h1 {
+    color: black;
+    text-align: left;
+  }
+  
+  .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+  }
+  
+    
