@@ -1,5 +1,16 @@
 # faceMatch
 
+The faceMatch directory is split up like this
+
+```bash
+faceMatch
+├── code (code for training and saving the machine learning model)
+├── helperScripts (scrips that help with data preprocessing and other purposes)
+├── savedModels (trained models that are uploaded to GCP)
+|
+└── README.md
+```
+
 # Phase 2
 # # faceMatch
 # Task to be done in frontend :
