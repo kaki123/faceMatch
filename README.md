@@ -17,16 +17,16 @@ faceMatch
 # Instruction to view Frontend Deliverables :
 
 # Instruction to view Backend Deliverables :
-GCP Account: mzheng20@students.claremontmckenna.edu
-Project Name: Face Match
-Project ID: face-match-219722
-BUCKET_NAME: face-match-219722knn
-MODEL_NAME: knn_1dlist
-VERSION_NAME: first_working
-INPUT_FILE: 
-from root of this github repository: /testInputs/obama3.json
-set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version   $VERSION_NAME --json-instances $INPUT_FILE
-expected output: [u'obama']
+1) GCP Account: mzheng20@students.claremontmckenna.edu
+2) Project Name: Face Match
+3) Project ID: face-match-219722
+4) BUCKET_NAME: face-match-219722knn
+5) MODEL_NAME: knn_1dlist
+6) VERSION_NAME: first_working
+7) INPUT_FILE: 
+8) from root of this github repository: /testInputs/obama3.json
+9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
+10) expected output: [u'obama']
 
 # Phase 2
 # # faceMatch
