@@ -23,17 +23,20 @@ faceMatch
 └── README.md
 ```
 # Instruction to view Frontend Deliverables :
+  1) To view the home page, open the home.html file in the FrontEnd folder. This will automatically open in a web browser.
+  2) To view the loading page, either open the loading.html file in the FrontEnd folder, or click on the done butotn on the home.html file.
+  3) To view the results page, open the export.html file in the FrontEnd folder.
 
 # Instruction to view Backend Deliverables :
-1) GCP Account: mzheng20@students.claremontmckenna.edu
-2) Project Name: Face Match
-3) Project ID: face-match-219722
-4) BUCKET_NAME: face-match-219722knn
-5) MODEL_NAME: knn_1dlist
-6) VERSION_NAME: first_working
-7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
-9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
-10) expected output: [u'obama']
+  1) GCP Account: mzheng20@students.claremontmckenna.edu
+  2) Project Name: Face Match
+  3) Project ID: face-match-219722
+  4) BUCKET_NAME: face-match-219722knn
+  5) MODEL_NAME: knn_1dlist
+  6) VERSION_NAME: first_working
+  7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
+  9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
+  10) expected output: [u'obama']
 
 # Phase 2
 # # faceMatch
