@@ -14,6 +14,9 @@ faceMatch
 ├── FrontEnd (frontend code for web pages)
 └── README.md
 ```
+# Instruction to view Backend Deliverables :
+
+# Instruction to view Frontend Deliverables :
 
 # Phase 2
 # # faceMatch
