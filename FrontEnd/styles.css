@@ -1,0 +1,100 @@
+body {
+    background-color: lightcyan;
+}
+a {
+    color: black;
+}
+.center1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.center2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+
+h3 {
+    color: black;
+    text-align: center;
+    border: 2px solid black;
+    margin: 5px;
+    padding: 5px;
+    width: 100px
+}
+
+.wrapper {
+    width: 50%;
+    height: 200px;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+#doneB {
+    float: right;
+}
+
+#downloadB {
+    float: left;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.img {
+    display: inline-block;
+    margin: 0px;
+    height: 500px;
+    width: 500px;
+}
+
+.images {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+}
+
+.imgLab {
+    top: 0;
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    margin: auto 5% auto 30%;
+}
+
+.imgMan {
+    top: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin: auto 30% auto 5%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.main {
+    background-color: rgb(32, 178, 170);
+    float: left;
+    width: 33.33%;
+}
+
+.notMain {
+    background-color: rgb(58, 207, 200);
+    float: left;
+    width: 33.33%;
+}
