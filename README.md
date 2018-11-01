@@ -5,13 +5,21 @@ The folders faceMatch directory is split up like this
 ```bash
 faceMatch
 ├── code (code for training and saving the machine learning model)
+|
 ├── helperScripts (scrips that help with data preprocessing and other purposes)
+|
 ├── savedModels (trained models that are uploaded to GCP)
+|
 ├── testInput (JSON file that are used as an input to make online predictions in GCP)
+|
 ├── knn_examples (training and test file for the KNN model)
+|
 ├── grs (training photos for golden retrievers)
+|
 ├── pugs (training photos for pugs)
+|
 ├── FrontEnd (frontend code for web pages)
+|
 └── README.md
 ```
 # Instruction to view Frontend Deliverables :
