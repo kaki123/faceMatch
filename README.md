@@ -31,7 +31,7 @@ faceMatch
 4) BUCKET_NAME: face-match-219722knn
 5) MODEL_NAME: knn_1dlist
 6) VERSION_NAME: first_working
-7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json
+7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
 9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
 10) expected output: [u'obama']
 
