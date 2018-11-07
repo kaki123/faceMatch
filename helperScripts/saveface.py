@@ -6,6 +6,7 @@ import pickle
 import json
 import codecs
 import numpy as np
+import json
 from PIL import Image, ImageDraw
 import face_recognition
 from face_recognition.face_recognition_cli import image_files_in_folder
@@ -28,7 +29,7 @@ def saveface(X_img_path):
 
 
 def main():
-    saveface('obama.jpg')
+    saveface('mz.jpg')
 
 if __name__ == "__main__":
     main()
