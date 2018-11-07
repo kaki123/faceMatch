@@ -190,10 +190,18 @@ def show_prediction_labels_on_image(img_path, predictions):
 if __name__ == "__main__":
     # STEP 1: Train the KNN classifier and save it to disk
     # Once the model is trained and saved, you can skip this step next time.
-    print("Training KNN classifier...")
-    classifier = train("knn_examples/train", model_save_path="trained_knn_model.clf", n_neighbors=2)
-    print("Training complete!")
-    joblib.dump(classifier, 'model.joblib')
+    print("Training prof KNN classifier...")
+    classifier_prof = train("knn_examples/train/profs", model_save_path="trained_knn_model_prof.clf", n_neighbors=2)
+    print("Training profs complete!")
+    joblib.dump(classifier_prof, 'model_prof.joblib')
+    print("Training celeb KNN classifier...")
+    classifier_celeb = train("knn_examples/train/celebs", model_save_path="trained_knn_model_celeb.clf", n_neighbors=2)
+    print("Training celebs complete!")
+    joblib.dump(classifier_celeb, 'model_celeb.joblib')
+    print("Training student KNN classifier...")
+    classifier_student = train("knn_examples/train/students", model_save_path="trained_knn_model_student.clf", n_neighbors=2)
+    print("Training students complete!")
+    joblib.dump(classifier_student, 'model_student.joblib')
     """
     # STEP 2: Using the trained classifier, make predictions for unknown images
     for image_file in os.listdir("knn_examples/test"):
