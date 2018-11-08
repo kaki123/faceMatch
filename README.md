@@ -1,3 +1,5 @@
+See more at https://github.com/kaki123/dog-breed-classifier, full project there. This mostly contains python script andsaved model.
+
 [//]: # (Image References)
 
 [image1]: ./images/sample_dog_output.png "Sample Output"
