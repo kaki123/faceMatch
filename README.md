@@ -1,58 +1,59 @@
-# faceMatch
+[//]: # (Image References)
 
-The folders faceMatch directory is split up like this
+[image1]: ./images/sample_dog_output.png "Sample Output"
+[image2]: ./images/sample_human_output.png "Sample Human Output"
+[image3]: ./images/vgg16_model.png "VGG-16 Model Keras Layers"
+[image4]: ./images/vgg16_model_draw.png "VGG16 Model Figure"
 
-```bash
-faceMatch
-├── code (code for training and saving the machine learning model)
-|
-├── helperScripts (scrips that help with data preprocessing and other purposes)
-|
-├── savedModels (trained models that are uploaded to GCP)
-|
-├── testInput (JSON file that are used as an input to make online predictions in GCP)
-|
-├── knn_examples (training and test file for the KNN model)
-|
-├── grs (training photos for golden retrievers)
-|
-├── pugs (training photos for pugs)
-|
-├── FrontEnd (frontend code for web pages)
-|
-└── README.md
+
+## Overview
+
+This is a more reader-friendly version of a project I worked on as part of my Udacity Machine Learning Nanodegree. The original project is available [here](https://github.com/jeremyjordan/machine-learning/tree/master/projects/dog-project).
+
+In this project, I'll walk through how to build a Convolutional Neural Networks (CNN) for image classification. In particular, the CNN developed for this project will attempt to predict the breed of a dog in a given photo. Just for fun, we'll also determine which dog breed a human most resembles when provided an image of a person.
+
+Here's a sample of an output for a dog.
+![Sample Output][image1]
+
+And a human.
+![Sample Output][image2]
+
+## Data
+
+The training data for this project is located [here](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip). This dataset contains 133 different breeds of dogs and is already split into train, test, and validation sets. Place the training, testing, and validation datasets in the `dogImages` folder.
+
+## Instructions
+
+If you want to run this code on your local computer, you'll also need to download the bottleneck features found [here](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogInceptionV3Data.npz). I'll discuss what this is in the Jupyter Notebook, but it's a relatively large file so you may want to go ahead and start the download.
+
+I recommend setting up an environment for this project to ensure you have the proper versions of the required libraries.
+
+Note: You must navigate to the root folder of the project directory in order for the following commands to work properly.
+
+For __Mac/OSX__:
 ```
-# Instruction to view Frontend Deliverables :
-  1) To view the home page, open the home.html file in the FrontEnd folder. This will automatically open in a web browser.
-  2) To view the loading page, either open the loading.html file in the FrontEnd folder, or click on the done butotn on the home.html file.
-  3) To view the results page, open the export.html file in the FrontEnd folder.
+	conda env create -f requirements/aind-dog-mac.yml
+	source activate aind-dog
+	KERAS_BACKEND=tensorflow python -c "from keras import backend"
+```
 
-# Instruction to view Backend Deliverables :
-  1) GCP Account: mzheng20@students.claremontmckenna.edu
-  2) Project Name: Face Match
-  3) Project ID: face-match-219722
-  4) BUCKET_NAME: face-match-219722knn
-  5) MODEL_NAME: knn_1dlist
-  6) VERSION_NAME: first_working
-  7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
-  9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
-  10) expected output: [u'obama']
+For __Linux__:
+```
+	conda env create -f requirements/aind-dog-linux.yml
+	source activate aind-dog
+	KERAS_BACKEND=tensorflow python -c "from keras import backend"
+```
 
-# Phase 2
-# # faceMatch
-# Task to be done in frontend :
-  1) Create category selection menu 
-  2) Give the import photo button functionality on the home page
-  3) Give the download button functionality on the results page
+For __Windows__:
+```
+	conda env create -f requirements/aind-dog-windows.yml
+	activate aind-dog
+	set KERAS_BACKEND=tensorflow
+	python -c "from keras import backend"
+```
 
-# Task to be done in backend :
-  1) save the trained model and export to a Pickle File
-  2) BackEnd - upload Pickle File to GCP
-  3) BackEnd - write a Python Script that invokes the trained model on test data
-  4) BackEnd - setup GCP account and project
-  5) Fix bug in python script. 
+Lastly, fire up the Jupyter Notebook and let's get started.
 
-# Task to be done in frontend and backend connection:
-  1) Receive uploaded photo from frontend and save to GCP server
-  2) Get the results from GCP and return the result photo back to the frontend
-  
+```
+	jupyter notebook dog_app.ipynb
+```
