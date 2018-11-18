@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Baby Weight Predictor</title>
+    <title>Face Match Predictor</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -11,13 +11,13 @@
   <body ng-app="myApp" ng-cloak style="background-color: #efefef" ng-controller="myCtrl" layout="column">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <span>Baby weight predictor</span>
+      <span>Face Match predictor</span>
     </div>
   </md-toolbar>
   <md-content flex style="width:420">
     <md-card>
       <md-card-content>
-        <p><em>Example application to predict a baby's weight.</em></p>
+        <p><em>The application to predict a face match.</em></p>
        </md-card-content>
     </md-card>
 
@@ -26,10 +26,13 @@
 
         <div layout="row" layout-align="space-between center">
           <span>Person to Predict</span>
-          <md-select ng-model="data.person" placeholder="Select">
+          <input ng-model="data.person"
+       onchange="angular.element(this).scope().file_changed(this)"
+       type="file" accept="image/*" />
+          <!-- <md-select ng-model="data.person" placeholder="Select">
             <md-option value="1">Huize</md-option>
             <md-option value="2">Kaitlyn</md-option>
-          </md-select>
+          </md-select> -->
         </div>
 
         <div style="margin-bottom:32px" layout="row" layout-align="space-between center">
@@ -62,6 +65,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
 
   <script>
+
     var app = angular.module('myApp', ['ngMaterial']);
     app.config(['$interpolateProvider', function($interpolateProvider) {
       $interpolateProvider.startSymbol('{:');
@@ -74,6 +78,16 @@
     });
     app.controller('myCtrl', ['$scope', '$http',
       function($scope, $http) {
+        $scope.file_changed = function(element) {
+          $scope.$apply(function(scope) {
+              var photofile = element.files[0];
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                // handle onload
+              };
+              reader.readAsDataURL(photofile);
+          });
+        };
         $scope.data = {};
         $scope.submit = function() {
           $scope.result = "Wait...";
