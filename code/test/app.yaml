@@ -10,4 +10,4 @@ handlers:
   login: required
 
 env_variables:
-  MODEL_NAME: 'prof_model'
+  MODEL_NAME: 'prof'

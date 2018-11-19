@@ -1,2 +1,8 @@
 Flask==0.12.1
 google-api-python-client==1.6.2
+scikit-learn
+face_recognition 
+pickle
+codecs
+numpy
+PIL
