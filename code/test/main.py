@@ -1,7 +1,6 @@
 import json
 import os
 import math
-from sklearn import neighbors
 import os.path
 import pickle
 import json
