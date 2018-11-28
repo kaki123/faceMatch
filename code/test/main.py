@@ -1,8 +1,6 @@
 import json
 import os
 import math
-import face_recognition
-from face_recognition.face_recognition_cli import image_files_in_folder
 
 from flask import Flask
 from flask import jsonify
@@ -16,40 +14,40 @@ from google.appengine.api import app_identity
 
 credentials = GoogleCredentials.get_application_default()
 api = discovery.build('ml', 'v1', credentials=credentials)
-project = 'projects/{}'.format('face-match-219722')
-model_name = os.getenv('MODEL_NAME', 'prof_model')
+project = 'projects/{}'.format('face-match-upload')
+model_name = os.getenv('MODEL_NAME', 'prof')
 
 app = Flask(__name__)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-def saveface(X_img_path):
-    if not os.path.isfile(X_img_path) or os.path.splitext(X_img_path)[1][1:] not in ALLOWED_EXTENSIONS:
-        raise Exception("Invalid image path: {}".format(X_img_path))
-    # Load image file and find face locations
-    # NEED TO WRITE IN SERVER
-    X_img = face_recognition.load_image_file(X_img_path)
-    X_face_locations = face_recognition.face_locations(X_img)
-    # If no faces are found in the image, return an empty result.
-    if len(X_face_locations) == 0:
-        return []
-    # Find encodings for faces in the test iamge
-    faces_encodings = face_recognition.face_encodings(X_img, known_face_locations=X_face_locations)
-    return faces_encodings
+# def saveface(X_img_path):
+#     if not os.path.isfile(X_img_path) or os.path.splitext(X_img_path)[1][1:] not in ALLOWED_EXTENSIONS:
+#         raise Exception("Invalid image path: {}".format(X_img_path))
+#     # Load image file and find face locations
+#     # NEED TO WRITE IN SERVER
+#     X_img = face_recognition.load_image_file(X_img_path)
+#     X_face_locations = face_recognition.face_locations(X_img)
+#     # If no faces are found in the image, return an empty result.
+#     if len(X_face_locations) == 0:
+#         return []
+#     # Find encodings for faces in the test iamge
+#     faces_encodings = face_recognition.face_encodings(X_img, known_face_locations=X_face_locations)
+#     return faces_encodings
 
-def remove_linebreak(content):
-    n = 0
-    while n <= len(content):
-        if content[n] == '\n':
-            content = content[:n] + content[n+1:]
-        n += 1
-    return content
+# def remove_linebreak(content):
+#     n = 0
+#     while n <= len(content):
+#         if content[n] == '\n':
+#             content = content[:n] + content[n+1:]
+#         n += 1
+#     return content
 
-def getData(uri):
-    head, data = uri.split(',')
-    decoded =data.decode('base64','strict')
-    # decoded base64.b64decode(data)
-    return decoded
+# def getData(uri):
+#     head, data = uri.split(',')
+#     decoded =data.decode('base64','strict')
+#     # decoded base64.b64decode(data)
+#     return decoded
 
 
 def get_prediction(features):
@@ -71,31 +69,31 @@ def index():
 def input_form():
   return render_template('form.html')
 
-@app.route('/api/predict', methods=['POST'])
-def predict():
-  def convert_file(val):
-    people = saveface(val)
-    return remove_linebreak(people)
+# @app.route('/api/predict', methods=['POST'])
+# def predict():
+#   # def convert_file(val):
+#   #   people = saveface(val)
+#   #   return remove_linebreak(people)
 
-  def person2file(val):
-    people = {'1': 'huize.json', '2': 'kaitlyn.json'}
-    return people[val]
+#   def person2file(val):
+#     people = {'1': 'huize.json', '2': 'kaitlyn.json'}
+#     return people[val]
 
-  def categ2model(val):
-    models = {'prof': 'prof', 'student': 'student', 'celeb': 'celeb'}
-    return models[val]
+#   def categ2model(val):
+#     models = {'prof': 'prof', 'student': 'student', 'celeb': 'celeb'}
+#     return models[val]
 
-  data = json.loads(request.data.decode())
-  mandatory_items = ['person', 'category']
-  for item in mandatory_items:
-    if item not in data.keys():
-      return jsonify({'result': 'Set all items.'})
+#   data = json.loads(request.data.decode())
+#   mandatory_items = ['person', 'category']
+#   for item in mandatory_items:
+#     if item not in data.keys():
+#       return jsonify({'result': 'Set all items.'})
 
-  features = {}
-  person = getData(data['person'])
-  features['person'] = convert_file(person)
-  features['category'] = categ2model(data['category'])
+#   features = {}
+#   # person = getData(data['person'])
+#   # features['person'] = convert_file(person)
+#   features['category'] = categ2model(data['category'])
 
-  prediction = get_prediction(features)
-  return jsonify({'result': prediction})
+  # prediction = get_prediction(features)
+  # return jsonify({'result': prediction})
   #return prediction

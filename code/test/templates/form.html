@@ -26,9 +26,12 @@
 
         <div layout="row" layout-align="space-between center">
           <span>Person to Predict</span>
-          <input ng-model="data.person"
+          <input type="file" ngf-select="" ng-model="picFile" name="file"    
+          accept="image/*" ngf-max-size="2MB" required
+          ngf-model-invalid="errorFile">
+          <!-- <input ng-model="data.person"
        onchange="angular.element(this).scope().file_changed(this)"
-       type="file" accept="image/*" />
+       type="file" accept="image/*" /> -->
           <!-- <md-select ng-model="data.person" placeholder="Select">
             <md-option value="1">Huize</md-option>
             <md-option value="2">Kaitlyn</md-option>
@@ -37,7 +40,7 @@
 
         <div style="margin-bottom:32px" layout="row" layout-align="space-between center">
           <span>Category</span>
-          <md-radio-group ng-model="data.category" layout="row">
+          <md-radio-group ng-model="category" layout="row">
             <md-radio-button value="prof">Professors</md-radio-button>
             <md-radio-button value="student">Students</md-radio-button>
             <md-radio-button value="celeb">Celebrities</md-radio-button>
@@ -45,7 +48,7 @@
         </div>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="submit()" class="md-accent md-raised">Predict</md-button>
+        <md-button ng-click="uploadPic(picFile)" class="md-accent md-raised">Predict</md-button>
       </md-card-actions>
     </md-card>
 
@@ -76,33 +79,80 @@
         .primaryPalette('blue-grey')
         .accentPalette('orange');
     });
-    app.controller('myCtrl', ['$scope', '$http',
-      function($scope, $http) {
-        $scope.file_changed = function(element) {
-          $scope.$apply(function(scope) {
-              var photofile = element.files[0];
-              var reader = new FileReader();
-              reader.onload = function(e) {
-                // handle onload
-              };
-              reader.readAsDataURL(photofile);
-          });
-        };
-        $scope.data = {};
-        $scope.submit = function() {
-          $scope.result = "Wait...";
-          $http({
-            method : 'POST',
-            url : '/api/predict',
-            data: $scope.data
-          }).success(function(data, status, headers, config) {
-            $scope.result = data.result;
-          }).error(function(data, status, headers, config) {
-            $scope.result = data.result;
-          });
-        }
+
+    app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+      $scope.uploadPic = function(file) {
+      file.upload = Upload.upload({
+        url: 'https://www.googleapis.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
+        data: {category: $scope.category, file: file},
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          file.result = response.data;
+        });
+      }, function (response) {
+        if (response.status > 0)
+          $scope.errorMsg = response.status + ': ' + response.data;
+      }, function (evt) {
+        // Math.min is to fix IE which reports 200% sometimes
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
       }
-    ]);
+  }]);
+
+    // app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+    //   $scope.uploadFiles = function(file, errFiles) {
+    //       $scope.f = file;
+    //       $scope.errFile = errFiles && errFiles[0];
+    //       if (file) {
+    //           file.upload = Upload.upload({
+    //               url: 'https://www.googleapis.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
+    //               data: {file: file}
+    //           });
+
+    //           file.upload.then(function (response) {
+    //               $timeout(function () {
+    //                   file.result = response.data;
+    //               });
+    //           }, function (response) {
+    //               if (response.status > 0)
+    //                   $scope.errorMsg = response.status + ': ' + response.data;
+    //           }, function (evt) {
+    //               file.progress = Math.min(100, parseInt(100.0 * 
+    //                                       evt.loaded / evt.total));
+    //           });
+    //       }   
+    //   }
+    // }]);
+
+    // app.controller('myCtrl', ['$scope', '$http',
+    //   function($scope, $http) {
+        // $scope.file_changed = function(element) {
+        //   $scope.$apply(function(scope) {
+        //       var photofile = element.files[0];
+        //       var reader = new FileReader();
+        //       reader.onload = function(e) {
+        //         // handle onload
+        //       };
+        //       reader.readAsDataURL(photofile);
+        //   });
+        // };
+    //     $scope.data = {};
+    //     $scope.submit = function() {
+    //       $scope.result = "Wait...";
+    //       $http({
+    //         method : 'POST',
+    //         url : '/api/predict',
+    //         data: $scope.data
+    //       }).success(function(data, status, headers, config) {
+    //         $scope.result = data.result;
+    //       }).error(function(data, status, headers, config) {
+    //         $scope.result = data.result;
+    //       });
+    //     }
+    //   }
+    // ]);
   </script>
 </body>
 </html>
