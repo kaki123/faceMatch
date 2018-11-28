@@ -2,6 +2,9 @@ import json
 import os
 import google
 import sys
+import io
+from PIL import Image
+import face_recognition
 #import cv2
 import numpy as np
 import logging
@@ -109,20 +112,35 @@ def create_file(self, filename):
 # READ FROM CLOUD STORAGE
 def read_file():
     #self.response.write('Reading the full file contents:\n')
-    gcs_file = storage_client.open("/face-match-219722-images/josh.jpg", mode='r', content_type="image/jpg", options=None, read_buffer_size=storage_api.ReadBuffer.DEFAULT_BUFFER_SIZE, retry_params=None)
-    contents = gcs_file.read()
-    gcs_file.close()
-    return contents
+    #gcs_file = storage_client.open("/face-match-219722-images/josh.jpg", mode='r', content_type="image/jpg", options=None, read_buffer_size=storage_api.ReadBuffer.DEFAULT_BUFFER_SIZE, retry_params=None)
+    gcs_file = bucket.get_blob("josh.jpg")
+    #contents = gcs_file.read()
+    #gcs_file.close()
+    img_string = gcs_file.download_as_string()
+    image = Image.open(io.BytesIO(img_string)).convert('RGB') 
+    open_cv_image = np.array(image) 
+    #image.save("josh.jpg")
+    X_face_locations = face_recognition.face_locations(open_cv_image)
+    if len(X_face_locations) == 0:
+        return []
+    faces_encodings = face_recognition.face_encodings(open_cv_image, known_face_locations=X_face_locations)
+    encoding_list = np.asarray(faces_encodings[0]).reshape(1,-1).tolist()
+    json_dict = {}
+    json_dict["instances"] = encoding_list
+    #print(encoding_list)
+    return encoding_list
+    #return contents
     #self.response.write(contents)
 
 def get_prediction():
-  input_data = {"instances": [
-          huize
-      ]}
+  #input_data = {"instances": [
+   #       huize
+    #  ]}
+  input_data = {"instances": read_file()}
   parent = '%s/models/%s' % (project, model_name)
   prediction = api.projects().predict(body=input_data, name=parent).execute()
-  print(prediction["predictions"][0])
+  print(prediction)
   return prediction
 
 if __name__ == "__main__":
-    read_file()
+    get_prediction()
