@@ -1,12 +1,6 @@
 import json
 import os
 import math
-import os.path
-import pickle
-import json
-import codecs
-import numpy as np
-from PIL import Image, ImageDraw
 import face_recognition
 from face_recognition.face_recognition_cli import image_files_in_folder
 
