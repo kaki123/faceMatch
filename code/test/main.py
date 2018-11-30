@@ -69,31 +69,30 @@ def index():
 def input_form():
   return render_template('form.html')
 
-# @app.route('/api/predict', methods=['POST'])
-# def predict():
-#   # def convert_file(val):
-#   #   people = saveface(val)
-#   #   return remove_linebreak(people)
+@app.route('/api/predict', methods=['POST'])
+def predict():
+  # def convert_file(val):
+  #   people = saveface(val)
+  #   return remove_linebreak(people)
 
-#   def person2file(val):
-#     people = {'1': 'huize.json', '2': 'kaitlyn.json'}
-#     return people[val]
+  def person2file(val):
+    people = {'1': 'huize.json', '2': 'kaitlyn.json'}
+    return people[val]
 
-#   def categ2model(val):
-#     models = {'prof': 'prof', 'student': 'student', 'celeb': 'celeb'}
-#     return models[val]
+  def categ2model(val):
+    models = {'prof': 'prof', 'student': 'student', 'celeb': 'celeb'}
+    return models[val]
 
-#   data = json.loads(request.data.decode())
-#   mandatory_items = ['person', 'category']
-#   for item in mandatory_items:
-#     if item not in data.keys():
-#       return jsonify({'result': 'Set all items.'})
+  data = json.loads(request.data.decode())
+  mandatory_items = ['person', 'category']
+  for item in mandatory_items:
+    if item not in data.keys():
+      return jsonify({'result': 'Set all items.'})
 
-#   features = {}
-#   # person = getData(data['person'])
-#   # features['person'] = convert_file(person)
-#   features['category'] = categ2model(data['category'])
+  features = {}
+  # person = getData(data['person'])
+  # features['person'] = convert_file(person)
+  features['category'] = categ2model(data['category'])
 
   # prediction = get_prediction(features)
   # return jsonify({'result': prediction})
-  #return prediction
