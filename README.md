@@ -6,6 +6,8 @@ The folders faceMatch directory is split up like this
 faceMatch
 ├── code (code for training and saving the machine learning model)
 |
+├──── test (code for gcp app using flask, angularjs, and the ML engine)
+|
 ├── helperScripts (scrips that help with data preprocessing and other purposes)
 |
 ├── savedModels (trained models that are uploaded to GCP)
@@ -30,7 +32,7 @@ faceMatch
   1) GCP Account: mzheng20@students.claremontmckenna.edu
   2) Project Name: Face Match
   3) Project ID: face-match-219722
-  4) BUCKET_NAME: face-match-219722knn, face-match-219722celeb, face-match-219722
+  4) BUCKET_NAME: face-match-219722celeb, face-match-219722student, and face-match-219722prof
   5) MODEL_NAME: celeb_model, student_model, and prof_model
   6) VERSION_NAME: celeb1, student1, and prof1
   7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
@@ -38,7 +40,6 @@ faceMatch
   9) expected output: [u'obama']
 
 # Phase 5
-# # faceMatch
 # Task to be done in frontend :
   1) Upload the imported photo to the Google Cloud Bucket
   2) Send the filename of the photo to the ML engine
