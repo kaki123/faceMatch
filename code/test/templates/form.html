@@ -26,12 +26,12 @@
 
         <div layout="row" layout-align="space-between center">
           <span>Person to Predict</span>
-          <input type="file" ngf-select="" ng-model="picFile" name="file"    
+          <!-- <input type="file" ngf-select="" ng-model="picFile" name="file"    
           accept="image/*" ngf-max-size="2MB" required
-          ngf-model-invalid="errorFile">
-          <!-- <input ng-model="data.person"
+          ngf-model-invalid="errorFile"> -->
+          <input ng-model="data.person"
        onchange="angular.element(this).scope().file_changed(this)"
-       type="file" accept="image/*" /> -->
+       type="file" accept="image/*" />
           <!-- <md-select ng-model="data.person" placeholder="Select">
             <md-option value="1">Huize</md-option>
             <md-option value="2">Kaitlyn</md-option>
@@ -48,7 +48,7 @@
         </div>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="uploadPic(picFile)" class="md-accent md-raised">Predict</md-button>
+        <md-button ng-click="uploadFiles(picFile)" class="md-accent md-raised">Predict</md-button>
       </md-card-actions>
     </md-card>
 
@@ -67,9 +67,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
 
+  <!-- New Stuff -->
+  <!-- <script src="angular(.min).js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script> -->
+  <!-- <script src="https://github.com/danialfarid/ng-file-upload/blob/master/dist/ng-file-upload.js"></script> -->
+  <!-- <script src="ng-file-upload(.min).js"></script> -->
+  <script src="../lib/ng-file-upload-bower-12.2.13/ng-file-upload.js"></script>
+  <script src="../lib/ng-file-upload-bower-12.2.13/ng-file-upload.min.js"></script>
+  <!-- <script src="https://github.com/danialfarid/ng-file-upload/blob/master/dist/ng-file-upload.min.js"></script> -->
+
   <script>
 
-    var app = angular.module('myApp', ['ngMaterial']);
+    var app = angular.module('myApp', ['ngMaterial', 'ngFileUpload']);
     app.config(['$interpolateProvider', function($interpolateProvider) {
       $interpolateProvider.startSymbol('{:');
       $interpolateProvider.endSymbol(':}');
@@ -80,31 +89,10 @@
         .accentPalette('orange');
     });
 
-    // app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-    //   $scope.uploadPic = function(file) {
-    //   file.upload = Upload.upload({
-    //     url: 'https://www.googleapis.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
-    //     data: {category: $scope.category, file: file},
-    //   });
-
-    //   file.upload.then(function (response) {
-    //     $timeout(function () {
-    //       file.result = response.data;
-    //     });
-    //   }, function (response) {
-    //     if (response.status > 0)
-    //       $scope.errorMsg = response.status + ': ' + response.data;
-    //   }, function (evt) {
-    //     // Math.min is to fix IE which reports 200% sometimes
-    //     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-    //   });
-    //   }
-    // }]);
-
     app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-      $scope.uploadFiles = function(file, errFiles) {
+      $scope.uploadFiles = function(file) {
           $scope.f = file;
-          $scope.errFile = errFiles && errFiles[0];
+          // $scope.errFile = errFiles && errFiles[0];
           if (file) {
               file.upload = Upload.upload({
                   url: 'https://www.googleapis.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
@@ -143,7 +131,7 @@
           $scope.result = "Wait...";
           $http({
             method : 'POST',
-            url : '/api/predict',
+            url : '/upload/storage/v1/b/image-upload-trial/o',
             data: $scope.data
           }).success(function(data, status, headers, config) {
             $scope.result = data.result;
