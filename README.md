@@ -23,36 +23,26 @@ faceMatch
 └── README.md
 ```
 # Instruction to view Frontend Deliverables :
-  1) To view the home page, open the home.html file in the FrontEnd folder. This will automatically open in a web browser.
-  2) To view the loading page, either open the loading.html file in the FrontEnd folder, or click on the done butotn on the home.html file.
-  3) To view the results page, open the export.html file in the FrontEnd folder.
+  1) To view the web page, go to https://face-match-upload.appspot.com, which is the url for the following file: code/test/templates/index.html
+  2) Sign in with your Google creditials to access the form.html page, which is the main web page for Face Match.
 
 # Instruction to view Backend Deliverables :
   1) GCP Account: mzheng20@students.claremontmckenna.edu
   2) Project Name: Face Match
   3) Project ID: face-match-219722
-  4) BUCKET_NAME: face-match-219722knn
-  5) MODEL_NAME: knn_1dlist
-  6) VERSION_NAME: first_working
+  4) BUCKET_NAME: face-match-219722knn, face-match-219722celeb, face-match-219722
+  5) MODEL_NAME: celeb_model, student_model, and prof_model
+  6) VERSION_NAME: celeb1, student1, and prof1
   7) INPUT_FILE: from root of this github repository: /testInputs/obama3.json  (stored is a list of pixel info of an obama pic)
-  9) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
-  10) expected output: [u'obama']
+  8) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
+  9) expected output: [u'obama']
 
-# Phase 2
+# Phase 5
 # # faceMatch
 # Task to be done in frontend :
-  1) Create category selection menu 
-  2) Give the import photo button functionality on the home page
-  3) Give the download button functionality on the results page
+  1) Upload the imported photo to the Google Cloud Bucket
+  2) Send the filename of the photo to the ML engine
 
 # Task to be done in backend :
-  1) save the trained model and export to a Pickle File
-  2) BackEnd - upload Pickle File to GCP
-  3) BackEnd - write a Python Script that invokes the trained model on test data
-  4) BackEnd - setup GCP account and project
-  5) Fix bug in python script. 
-
-# Task to be done in frontend and backend connection:
-  1) Receive uploaded photo from frontend and save to GCP server
-  2) Get the results from GCP and return the result photo back to the frontend
-  
+  1) Make a prediction function to take in input from the front end
+  2) Send the prediction result to the front end  
