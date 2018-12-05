@@ -96,3 +96,4 @@ def predict():
 
   # prediction = get_prediction(features)
   # return jsonify({'result': prediction})
+
