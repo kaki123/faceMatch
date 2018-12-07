@@ -26,22 +26,9 @@
 
         <div layout="row" layout-align="space-between center">
           <span>Person to Predict</span>
-
-          <!-- Use in first controller -->
           <input type="file" ngf-select="" ng-model="picFile" name="file"    
           accept="image/*" ngf-max-size="2MB" required
           ngf-model-invalid="errorFile">
-
-          <!-- Use in second controller -->
-          <!-- <input ng-model="data.person"
-       onchange="angular.element(this).scope().file_changed(this)"
-       type="file" accept="image/*" /> -->
-
-          <!-- Don't use -->
-          <!-- <md-select ng-model="data.person" placeholder="Select">
-            <md-option value="1">Huize</md-option>
-            <md-option value="2">Kaitlyn</md-option>
-          </md-select> -->
         </div>
 
         <div style="margin-bottom:32px" layout="row" layout-align="space-between center">
@@ -72,63 +59,30 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.js"></script>
-
-  <!-- New Stuff -->
-  <!-- <script src="ng-file-upload-bower-12.2.13/angular.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script> -->
-  <!-- <script src="https://github.com/danialfarid/ng-file-upload/blob/master/dist/ng-file-upload.js"></script> -->
-  <!-- <script src="ng-file-upload(.min).js"></script> -->
-  <!-- <script src="ng-file-upload-bower-12.2.13/ng-file-upload.js"></script> -->
-  <!-- <script src="ng-file-upload-bower-12.2.13/ng-file-upload.min.js"></script> -->
-  <!-- <script src="https://github.com/danialfarid/ng-file-upload/blob/master/dist/ng-file-upload.min.js"></script> -->
-
-  <!-- <script src="https://www.cs.hmc.edu/~huhuang/cs121/ng-file-upload-bower-12.2.13/angular.js"></script> -->
   <script src="https://www.cs.hmc.edu/~huhuang/cs121/ng-file-upload-bower-12.2.13/ng-file-upload-shim.js"></script>
   <script src="https://www.cs.hmc.edu/~huhuang/cs121/ng-file-upload-bower-12.2.13/ng-file-upload.js"></script>
-  <!-- <script src="https://www.cs.hmc.edu/~huhuang/cs121/ng-file-upload-bower-12.2.13/ng-file-upload.min.js"></script> -->
   
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script> -->
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/ng-file-upload-bower-12.2.13/angular.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/ng-file-upload-bower-12.2.13/ng-file-upload.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/ng-file-upload-bower-12.2.13/ng-file-upload.min.js"></script> -->
-
-
-
-  <!-- Testing javasript from gcp of tutorial -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/htmlembedded/htmlembedded.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/htmlmixed/htmlmixed.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/javascript/javascript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.8.0/mode/xml/xml.min.js"></script>
-  <!-- <script src=""></script> -->
-  <!-- <script src=""></script> -->
-
-
-  <!-- make public github, host the ng libs -->
-
   <script>
 
     var app = angular.module('myApp', ['ngMaterial']);
+
     app.config(['$interpolateProvider', function($interpolateProvider) {
       $interpolateProvider.startSymbol('{:');
       $interpolateProvider.endSymbol(':}');
     }]);
+
     app.config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
         .primaryPalette('blue-grey')
         .accentPalette('orange');
     });
 
-    app.controller('myCtrl', ['$rootScope', '$http', 'Upload', '$timeout', function ($rootScope, $http, Upload, $timeout) {
-      $rootScope.uploadFiles = function(file) {
-          $rootScope.f = file;
-          // $scope.errFile = errFiles && errFiles[0];
+    app.controller('myCtrl', ['$scope', '$http', 'Upload', '$timeout', function ($scope, $http, Upload, $timeout) {
+      $scope.uploadFiles = function(file) {
+          $scope.f = file;
           if (file) {
               file.upload = Upload.upload({
                   url: 'https://face-match-upload.appspot.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
-                  // url: 'https://www.googleapis.com/upload/storage/v1/b/image-upload-trial/o?uploadType=media',
                   method: 'POST',
                   data: {file: file}
               });
@@ -139,7 +93,7 @@
                   });
               }, function (response) {
                   if (response.status > 0)
-                      $rootScope.errorMsg = response.status + ': ' + response.data;
+                      $scope.errorMsg = response.status + ': ' + response.data;
               }, function (evt) {
                   file.progress = Math.min(100, parseInt(100.0 * 
                                           evt.loaded / evt.total));
@@ -147,34 +101,6 @@
           }   
       }
     }]);
-
-    app.controller('MyCtrl', ['$scope', '$http',
-      function($scope, $http) {
-        $scope.file_changed = function(element) {
-          $scope.$apply(function(scope) {
-              var photofile = element.files[0];
-              var reader = new FileReader();
-              reader.onload = function(e) {
-                // handle onload
-              };
-              reader.readAsDataURL(photofile);
-          });
-        };
-        $scope.data = {};
-        $scope.submit = function() {
-          $scope.result = "Wait...";
-          $http({
-            method : 'POST',
-            url : '/upload/storage/v1/b/image-upload-trial/o',
-            data: $scope.data
-          }).success(function(data, status, headers, config) {
-            $scope.result = data.result;
-          }).error(function(data, status, headers, config) {
-            $scope.result = data.result;
-          });
-        }
-      }
-    ]);
   </script>
 </body>
 </html>
