@@ -39,11 +39,12 @@ faceMatch
   8) set up environment variables and Run Command: gcloud ml-engine predict --model $MODEL_NAME --version $VERSION_NAME --json-instances $INPUT_FILE
   9) expected output: [u'obama']
 
-# Phase 5
-# Task to be done in frontend :
-  1) Upload the imported photo to the Google Cloud Bucket
-  2) Send the filename of the photo to the ML engine
-
-# Task to be done in backend :
-  1) Make a prediction function to take in input from the front end
-  2) Send the prediction result to the front end  
+# Two Versions of the final app code package :
+There are two versions of the final app code package inside the "code" directory. 
+  1) The "test_copy1" directory contains the first working version of our app, which has harded coded input for ML predictions. That version has less functionality than our final version, but it does not contain any bugs and can be deployed successfully on GCP
+  2) The "test" directory contains more features than the first working version. It incorporated fetching image from Cloud Storage and converting it to string. It also does the image preprocessing using the "face recognition" module. However, because we couldn't resolve bugs caused by the required dlib library of the face recognition module, this version cannot be run successfully on GCP yet
+  
+# Two Versions of functionality code that can be test locally :
+There are two versions of the final app code package inside the home directory. 
+  1) The "predict.py" file contains the same functionality as the app version in the "test" directory mentioned above. However, this file can be run successfully on one's local machine because it is not subject to the limitations on library used on GCP. It fetches an image from Cloud Storage, preprocesses it, and successfully makes a face match prediction on that image input.
+  2) The "predict_changed.py" contains the latest functionality that we were able to incorporate locally, including using the Google Cloud Vision API for image preprocessing. However, that file only prints the face feature locations information form the Cloud Vision API but cannot successfully make predictions yet because we haven't converted the face locations to a 1D array ML model input yet.
