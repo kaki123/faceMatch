@@ -11,3 +11,9 @@ handlers:
 
 env_variables:
   MODEL_NAME: 'prof_model'
+
+libraries:
+- name: PIL
+  version: "1.1.7"
+- name: numpy
+  version: "latest"
